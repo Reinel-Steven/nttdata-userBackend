@@ -2,8 +2,10 @@ package com.nttdata.demo.user.controller;
 
 import com.nttdata.demo.user.dto.FindUserDto;
 import com.nttdata.demo.user.dto.UserDto;
+import com.nttdata.demo.user.exception.ValidateResponseEntity;
 import com.nttdata.demo.user.services.IUserService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +24,11 @@ public class UserController {
     private IUserService service;
 
     @GetMapping
-    public ResponseEntity<UserDto> userDetail(@Valid @RequestParam String doc, String typeDoc){
+    @Validated
+    public ResponseEntity<UserDto> userDetail(@Pattern(regexp = "^\\d+$", message = "El documento debe ser numérico.") @RequestParam("doc") String doc,
+                                              @Pattern(regexp = "^[CP]$", message = "El tipo solo puede ser 'C' o 'P'.") @RequestParam("type") String type){
         try {
-            FindUserDto findUserDto = new FindUserDto(doc, typeDoc);
-            UserDto user = service.findByCc(findUserDto.getDoc());
+            UserDto user = service.findByCc(doc);
             if(user != null){
                 logger.info("Usuario consultado " + user.getPrimerNombre() + " " + user.getPrimerApellido());
                 return ResponseEntity.ok(user);

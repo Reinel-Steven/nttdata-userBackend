@@ -2,8 +2,10 @@ package com.nttdata.demo.user.dto;
 
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
+import org.springframework.validation.annotation.Validated;
 
 @Getter
+@Validated
 public class FindUserDto {
     @Pattern(regexp = "^\\d+$", message = "El documento debe ser numérico.")
     private String doc;
