@@ -21,14 +21,14 @@ public class GlobalExceptionHandler extends Exception{
     public ResponseEntity<String> handleResponseStatusException(ResponseStatusException ex) {
         // Obtiene el código de estado y el mensaje de la excepción
         HttpStatus status = (HttpStatus) ex.getStatusCode();
-        String message = ex.getReason();
+        String message = ex.getMessage();
         // Devuelve una respuesta personalizada con el código de estado y el mensaje
         return new ResponseEntity<>(message, status);
     }
 
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
     public Map<String, String> handleValidationExceptions(
             MethodArgumentNotValidException ex) {
