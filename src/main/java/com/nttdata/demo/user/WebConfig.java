@@ -12,11 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-<<<<<<< HEAD
-                .allowedOrigins("http://localhost:4200", "users-nttdata-front-a2fff0cwchdte2cx.canadacentral-01.azurewebsites.net")
-=======
                 .allowedOrigins("http://localhost:4200")
->>>>>>> origin/master
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*");
     }

@@ -1,6 +1,5 @@
 package com.nttdata.demo.user.controller;
 
-import com.nttdata.demo.user.dto.FindUserDto;
 import com.nttdata.demo.user.dto.UserDto;
 import com.nttdata.demo.user.entity.TypeDoc;
 import com.nttdata.demo.user.services.IUserService;
